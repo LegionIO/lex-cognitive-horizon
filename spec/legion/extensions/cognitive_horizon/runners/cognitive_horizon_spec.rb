@@ -220,17 +220,17 @@ RSpec.describe Legion::Extensions::CognitiveHorizon::Runners::CognitiveHorizon d
     end
 
     it 'returns count' do
-      result = client.nearest_projections(n: 2)
+      result = client.nearest_projections(count: 2)
       expect(result[:count]).to eq(2)
     end
 
     it 'returns projections sorted nearest first' do
-      result = client.nearest_projections(n: 2)
+      result = client.nearest_projections(count: 2)
       distances = result[:projections].map { |p| p[:horizon_distance] }
       expect(distances).to eq(distances.sort)
     end
 
-    it 'defaults to n=5' do
+    it 'defaults to count=5' do
       5.times { |i| client.add_projection(description: "extra #{i}", horizon_distance: 0.3) }
       result = client.nearest_projections
       expect(result[:count]).to be <= 5
@@ -243,13 +243,13 @@ RSpec.describe Legion::Extensions::CognitiveHorizon::Runners::CognitiveHorizon d
     end
 
     it 'returns projections sorted farthest first' do
-      result = client.farthest_projections(n: 2)
+      result = client.farthest_projections(count: 2)
       distances = result[:projections].map { |p| p[:horizon_distance] }
       expect(distances).to eq(distances.sort.reverse)
     end
 
     it 'returns correct count' do
-      result = client.farthest_projections(n: 2)
+      result = client.farthest_projections(count: 2)
       expect(result[:count]).to eq(2)
     end
   end

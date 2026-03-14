@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.email         = ['matthewdiverson@gmail.com']
 
   spec.summary       = 'LEX Cognitive Horizon'
-  spec.description   = 'Temporal planning horizon modeling for brain-modeled agentic AI — dynamic expansion/contraction based on stress, success, and construal level theory'
+  spec.description   = 'Temporal planning horizon modeling for brain-modeled agentic AI — ' \
+                       'dynamic expansion/contraction based on stress, success, and construal level theory'
   spec.homepage      = 'https://github.com/LegionIO/lex-cognitive-horizon'
   spec.license       = 'MIT'
   spec.required_ruby_version = '>= 3.4'

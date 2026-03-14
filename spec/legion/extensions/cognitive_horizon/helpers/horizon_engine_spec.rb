@@ -229,8 +229,8 @@ RSpec.describe Legion::Extensions::CognitiveHorizon::Helpers::HorizonEngine do
       [0.9, 0.1, 0.5, 0.3, 0.7].each { |d| engine.add_projection(description: "p#{d}", horizon_distance: d) }
     end
 
-    it 'returns n nearest by horizon_distance' do
-      result = engine.nearest_projections(n: 3)
+    it 'returns num nearest by horizon_distance' do
+      result = engine.nearest_projections(num: 3)
       expect(result.size).to eq(3)
       expect(result.map(&:horizon_distance)).to eq([0.1, 0.3, 0.5])
     end
@@ -246,8 +246,8 @@ RSpec.describe Legion::Extensions::CognitiveHorizon::Helpers::HorizonEngine do
       [0.9, 0.1, 0.5, 0.3, 0.7].each { |d| engine.add_projection(description: "p#{d}", horizon_distance: d) }
     end
 
-    it 'returns n farthest in descending order' do
-      result = engine.farthest_projections(n: 2)
+    it 'returns num farthest in descending order' do
+      result = engine.farthest_projections(num: 2)
       expect(result.map(&:horizon_distance)).to eq([0.9, 0.7])
     end
   end

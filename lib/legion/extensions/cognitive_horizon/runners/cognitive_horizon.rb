@@ -58,7 +58,8 @@ module Legion
               horizon_distance: horizon_distance,
               confidence:       confidence
             )
-            Legion::Logging.debug "[cognitive_horizon] add_projection: id=#{proj.id} distance=#{proj.horizon_distance.round(2)} construal=#{proj.construal_level}"
+            msg = "[cognitive_horizon] add_projection: id=#{proj.id} distance=#{proj.horizon_distance.round(2)} construal=#{proj.construal_level}"
+            Legion::Logging.debug msg
             proj.to_h
           end
 
@@ -74,15 +75,15 @@ module Legion
             { count: beyond.size, projections: beyond.map(&:to_h), effective_horizon: horizon_engine.effective_horizon.round(10) }
           end
 
-          def nearest_projections(n: 5, **)
-            projs = horizon_engine.nearest_projections(n: n)
-            Legion::Logging.debug "[cognitive_horizon] nearest_projections: n=#{n} returned=#{projs.size}"
+          def nearest_projections(count: 5, **)
+            projs = horizon_engine.nearest_projections(num: count)
+            Legion::Logging.debug "[cognitive_horizon] nearest_projections: count=#{count} returned=#{projs.size}"
             { count: projs.size, projections: projs.map(&:to_h) }
           end
 
-          def farthest_projections(n: 5, **)
-            projs = horizon_engine.farthest_projections(n: n)
-            Legion::Logging.debug "[cognitive_horizon] farthest_projections: n=#{n} returned=#{projs.size}"
+          def farthest_projections(count: 5, **)
+            projs = horizon_engine.farthest_projections(num: count)
+            Legion::Logging.debug "[cognitive_horizon] farthest_projections: count=#{count} returned=#{projs.size}"
             { count: projs.size, projections: projs.map(&:to_h) }
           end
 

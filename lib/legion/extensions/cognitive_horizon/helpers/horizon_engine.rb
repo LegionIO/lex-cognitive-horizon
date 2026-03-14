@@ -62,12 +62,12 @@ module Legion
             @projections.select { |p| p.horizon_distance > eh }
           end
 
-          def nearest_projections(n: 5)
-            @projections.sort_by(&:horizon_distance).first(n)
+          def nearest_projections(num: 5)
+            @projections.sort_by(&:horizon_distance).first(num)
           end
 
-          def farthest_projections(n: 5)
-            @projections.sort_by(&:horizon_distance).last(n).reverse
+          def farthest_projections(num: 5)
+            @projections.sort_by(&:horizon_distance).last(num).reverse
           end
 
           def construal_label
@@ -78,14 +78,14 @@ module Legion
 
           def horizon_report
             {
-              current_horizon:  @current_horizon.round(10),
-              stress_level:     @stress_level.round(10),
+              current_horizon:   @current_horizon.round(10),
+              stress_level:      @stress_level.round(10),
               effective_horizon: effective_horizon.round(10),
-              construal_label:  construal_label,
-              horizon_level:    horizon_level,
+              construal_label:   construal_label,
+              horizon_level:     horizon_level,
               total_projections: @projections.size,
-              within_horizon:   projections_within_horizon.size,
-              beyond_horizon:   beyond_horizon_projections.size
+              within_horizon:    projections_within_horizon.size,
+              beyond_horizon:    beyond_horizon_projections.size
             }
           end
 
